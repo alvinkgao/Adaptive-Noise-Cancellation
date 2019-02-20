@@ -28,6 +28,8 @@ for n = M:N+M-1
             rsx = rsx + xin(l:-1:l-M+1) * sin(l);
             rxx = rxx + xin(l:-1:l-M+1) * xin(l:-1:l-M+1)';
         end
+        rsx = (1/L) * rsx;
+        rxx = (1/L) * rxx;
         hrls = inv(rxx) * rsx;
         errr(n) = sin(n) - hrls' * xin(n:-1:n-M+1);
     end 
