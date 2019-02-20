@@ -1,4 +1,4 @@
-function [errl,errr,err2] = anc(xin,sin,mu,M,L,N)% inputs:
+function [errl,errr] = anc(xin,sin,mu,M,L,N)% inputs:
 % xin = reference signal
 % sin = sound signal
 % mu = stepsize > 0
@@ -13,7 +13,6 @@ sin = sin(:);
 hlms = [1,zeros(1,4)];
 hlms = hlms';
 hrls = hlms;
-hlms2 = hlms;
 errl = zeros(N,1);
 errr = zeros(N,1);
 for n = M:N+M-1
@@ -25,29 +24,16 @@ for n = M:N+M-1
     if n >= L + M
         rsx = 0;
         rxx = 0;
-        y = 0;
         for l = n-L+1:n
             rsx = rsx + xin(l:-1:l-M+1) * sin(l);
             rxx = rxx + xin(l:-1:l-M+1) * xin(l:-1:l-M+1)';
-            
-            y = hlms2' * xin(l:-1:l-M+1);
-            errtemp(l) = sin(l) - y;
-            err2(n) = err2(n) + errtemp(l);
-            
         end
         hrls = inv(rxx) * rsx;
         errr(n) = sin(n) - hrls' * xin(n:-1:n-M+1);
-        
-        
-
     end 
-    hlms2 = hlms2 + (mu/L) * xin(n:-1:n-M+1);
-    
 end 
 plot(hlms)
 hold
 plot(hrls)
-plot(hlms2)
 hlms
 hrls
-hlms2
