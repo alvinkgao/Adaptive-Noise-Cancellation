@@ -1,8 +1,8 @@
-Adaptive Noise Cancellation 
+#Adaptive Noise Cancellation 
 
 This is the matlab code for implementations of LMS (least mean square), RLS (recursive least squares), and LMS where L > 1.
 
-To run
+#To run
 
   You must have Matlab with the DSP systems toolbox installed.
   Open hw3data.mat
