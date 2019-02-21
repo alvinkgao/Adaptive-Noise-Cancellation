@@ -13,4 +13,4 @@ This is the matlab code for implementations of LMS (least mean square), RLS (rec
    [errl,errr,err2] = anc(100*noise,primary,0.0000005,5,25,600000);  
   
 # To play sounds
-  sound(errl,22000)
+   sound(errl,22000)
